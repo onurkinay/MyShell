@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <string.h>
+
+#define MAXCHAR 1000
+#define MAXARGS 100
 
 int initShell()
 {
@@ -8,12 +12,22 @@ int initShell()
     return 0;
 }
 
-int getUserInput()
+int getUserInput(char *input)
 {
     char str[20];
     printf("myshell>>>");
-    scanf("%[^\n]%*c", str);
-    printf("%s\n", str);
+    fgets(str, MAXCHAR, stdin);
+    if (str[0] != '\n' && str[1] != '\0')
+    {
+        strcpy(input, str);
+        return 0;
+    }
+    else
+    {
+        printf("No command.\n");
+        return 1;
+    }
+    
 }
 
 int runComm(char **commWithArgs)
@@ -51,9 +65,14 @@ int exitFromShell()
 
 int main(int argc, char const *argv[])
 {
+    char inputFromUser[MAXCHAR];
+    char *Args[MAXARGS];
+
     while (1)
     {
-        getUserInput();
+        if (getUserInput(inputFromUser))
+            continue;
+        printf("%s", inputFromUser);
     }
 
     return 0;
