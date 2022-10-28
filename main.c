@@ -56,7 +56,7 @@ int runComm(char **commWithArgs)
     if (i == 0)
     {
         // run command in child fork
-        if (execve(commWithArgs[0], commWithArgs, NULL) < 0)
+        if (execvp(commWithArgs[0], commWithArgs, NULL) < 0)
         { // error
             printf("Program is failed\n");
         }
@@ -93,8 +93,7 @@ int main(int argc, char const *argv[])
             continue;
 
         sepByInput(inputFromUser, Args);
-        
-        
+        runComm(Args);
         
         
     }
