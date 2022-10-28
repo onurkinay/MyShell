@@ -4,29 +4,38 @@
 
 int initShell()
 {
+    printf("Hello from MyShell");
+    return 0;
 }
 
-int runComm()
+int getUserInput()
 {
-    char *Args[3];
+    char str[20];
+    printf("myshell>>>");
+    scanf("%[^\n]%*c", str);
+    printf("%s\n", str);
+}
 
-    Args[0] = "cat";
-    Args[1] = "main.c";
-    Args[2] = NULL;
-
+int runComm(char **commWithArgs)
+{
     int i = fork();
 
     if (i == 0)
     {
-        printf("Program is started to work\n");
-        if (execve("/bin/cat", Args,NULL) < 0)
-        {
+        // run command in child fork
+        if (execve(commWithArgs[0], commWithArgs, NULL) < 0)
+        { // error
             printf("Program is failed\n");
         }
-        exit(0);
+        exit(0); // if child process is done, exit
+    }
+    else if (i < 0)
+    {
+        // error while creating fork
+        printf("Error 64");
     }
     else
-    {
+    { // wait for get it done
         wait(NULL);
         return 2;
     }
@@ -35,12 +44,17 @@ int runComm()
 
 int exitFromShell()
 {
+    wait(NULL);
+    exit(0);
     return 0;
 }
 
 int main(int argc, char const *argv[])
 {
-    printf("Hello world. Test\n");
-    runComm();
+    while (1)
+    {
+        getUserInput();
+    }
+
     return 0;
 }
