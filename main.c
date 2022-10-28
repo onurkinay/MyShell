@@ -17,8 +17,9 @@ int getUserInput(char *input)
     char str[20];
     printf("myshell>>>");
     fgets(str, MAXCHAR, stdin);
-    if (str[0] != '\n' && str[1] != '\0')
+    if (str[0] != '\n' && str[1] != '\0')//check empty
     {
+        str[strcspn(str, "\n")] = 0;
         strcpy(input, str);
         return 0;
     }
@@ -28,6 +29,20 @@ int getUserInput(char *input)
         return 1;
     }
     
+}
+
+int sepByInput(char *str, char **passed){
+    int str_size = strlen(str);
+	char delim[] = " ";
+
+	char *ptr = strtok(str, delim);
+
+	while(ptr != NULL)
+	{
+		printf("'%s'\n", ptr);
+		ptr = strtok(NULL, delim);
+	}
+
 }
 
 int runComm(char **commWithArgs)
@@ -72,7 +87,9 @@ int main(int argc, char const *argv[])
     {
         if (getUserInput(inputFromUser))
             continue;
-        printf("%s", inputFromUser);
+
+        sepByInput(inputFromUser, Args);
+        
     }
 
     return 0;
