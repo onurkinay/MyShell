@@ -36,12 +36,16 @@ int sepByInput(char *str, char **passed){
 	char delim[] = " ";
 
 	char *ptr = strtok(str, delim);
-
+    int i = 0; 
 	while(ptr != NULL)
-	{
-		printf("'%s'\n", ptr);
+	{ 
+        passed[i] = ptr;
 		ptr = strtok(NULL, delim);
+        i++;
 	}
+
+    passed[i] = NULL;
+    return 0;
 
 }
 
@@ -89,6 +93,9 @@ int main(int argc, char const *argv[])
             continue;
 
         sepByInput(inputFromUser, Args);
+        
+        
+        
         
     }
 
