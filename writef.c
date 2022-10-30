@@ -15,13 +15,10 @@ char *getTime()
     time[strcspn(time, "\n")] = 0;
     return time;
 }
- 
 
 int writeIntoFile(char *filename)
-{ 
-
-    FILE *fp = fopen(filename, "ab+");
-
+{
+    FILE *fp = fopen(filename, "ab+"); // creates file if no exists and open append mode
     if (fp)
     {
         fprintf(fp, "time:%s pid:%d ppid:%d\n", getTime(), getpid(), getppid());
@@ -35,8 +32,6 @@ int writeIntoFile(char *filename)
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-
     /*Arguman olarak gelen dosya adını alma*/
     char filename[100];
     for (int i = 0; i < argc; i++)
@@ -49,6 +44,5 @@ int main(int argc, char const *argv[])
     /*!Arguman olarak gelen dosya adını alma*/
 
     writeIntoFile(filename);
-
     return 0;
 }
