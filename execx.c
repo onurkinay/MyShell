@@ -16,7 +16,7 @@ int runProgramTimes(char **programWithArgs, int times)
             }
             else
             {
-                printf("Working\n");
+                printf("Not Working\n");
             }
         }
     }
@@ -47,12 +47,6 @@ int main(int argc, char const *argv[])
         }
     }
     programWithArgs[i] = NULL;
-
-    /*for (int k = 0; k < i; k++)
-    {
-        printf("%s\n", programWithArgs[k]);
-    }*/
-
     int x;
     sscanf(howTimes, "%d", &x);
     runProgramTimes(programWithArgs, x);
