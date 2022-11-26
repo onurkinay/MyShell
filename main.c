@@ -8,7 +8,7 @@
 
 int initShell()
 {
-    printf("Hello from MyShell");
+    printf("Hello from MyShell\n");
     return 0;
 }
 
@@ -90,12 +90,12 @@ int specialComms(char **commWithArgs)
     int whichOne = 0;
 
     specialCommsList[0] = "exit";
-   
+
     for (i = 0; i < specialComms; i++)
     {
         if (strcmp(commWithArgs[0], specialCommsList[i]) == 0)
         {
-            whichOne = i +1;
+            whichOne = i + 1;
             break;
         }
     }
@@ -118,7 +118,7 @@ int main(int argc, char const *argv[])
 {
     char inputFromUser[MAXCHAR];
     char *Args[MAXARGS];
-
+    initShell();
     while (1)
     {
         if (getUserInput(inputFromUser))
