@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-char *getTime()
+char *getTime()//sistemden tarih bilgisini al
 {
     time_t rawtime;
     struct tm *timeinfo;
@@ -16,7 +16,7 @@ char *getTime()
     return time;
 }
 
-int writeIntoFile(char *filename)
+int writeIntoFile(char *filename)//process ve tarih bilgilerini dosyaya kaydet
 {
     FILE *fp = fopen(filename, "ab+"); // creates file if no exists and open append mode
     if (fp)
