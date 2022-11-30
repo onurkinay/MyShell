@@ -12,11 +12,11 @@ int runProgramTimes(char **programWithArgs, int times)
         { // fork içi
             if (execvp(programWithArgs[0], programWithArgs, NULL) < 0)
             {
-                printf("Working Working\n");
+               
             }
             else
             {
-                printf("Not Working\n");
+               
             }
         }
     }
@@ -24,7 +24,6 @@ int runProgramTimes(char **programWithArgs, int times)
 
 int main(int argc, char const *argv[])
 {
-
     char howTimes[100];
     char program[100];
     char** programWithArgs;

@@ -14,7 +14,7 @@ int initShell() // karşılama mesajı
 
 int getUserInput(char *input) // kullanıcıdan komut al ve char array'e aktar
 {
-    char str[20];
+    char str[MAXCHAR];
 
     printf("myshell>>>");
     fgets(str, MAXCHAR, stdin);
@@ -33,6 +33,7 @@ int getUserInput(char *input) // kullanıcıdan komut al ve char array'e aktar
 
 int sepByInput(char *str, char **passed) // komut satırını boşluklarla diziye çevir
 {
+   
     int str_size = strlen(str); // komut satırı uzunluğu
     char delim[] = " ";         // ayırıcı karakter
 
@@ -114,7 +115,7 @@ int specialComms(char **commWithArgs) // myshellin kendi komutları
 int main(int argc, char const *argv[])
 {
     char inputFromUser[MAXCHAR];
-    char *Args[MAXARGS];
+    char Args[MAXARGS][MAXCHAR];
     initShell();
     while (1)//sonsuz döngü
     {
